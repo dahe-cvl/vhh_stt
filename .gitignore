@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+stt/credentials/google_application_credentials.json
+stt/credentials/azure_subscription_key.yaml
+stt/credentials/aws_credentials.ini
+
 # Distribution / packaging
 .Python
 build/

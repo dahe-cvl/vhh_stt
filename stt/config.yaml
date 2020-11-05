@@ -1,0 +1,25 @@
+# transcription - possible service values: google, azure, amazon, sphinx
+service : google
+enable_punctuation : True
+
+# audio
+source_start_trim : 900
+source_end_trim : 900
+clip_length : 59
+clip_overlap : 4
+
+# storage
+store_clips : False
+store_responses : True
+store_untrimmed_text : False
+
+# service configuration
+services:
+  google:
+    credentials: credentials/google_application_credentials.json
+  sphinx:
+  azure:
+    credentials: credentials/azure_subscription_key.yaml
+  amazon:
+    credentials: credentials/aws_credentials.ini
+    region: us-east-1
