@@ -2,7 +2,7 @@ import os
 import sys
 sys.path.append('..')
 
-from stt.transcribe import AudioTranscriber
+from vhh_stt.transcribe import AudioTranscriber
 from audio_paths import paths
 
 identifier = 'OH_ZP1_259'

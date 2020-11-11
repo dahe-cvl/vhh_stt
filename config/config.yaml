@@ -16,7 +16,7 @@ store_untrimmed_text : False
 # service configuration
 services:
   google:
-    credentials: credentials/google_application_credentials.json
+    credentials: D:\Uni\CVL Projekte\VHH\Project Setup\vhh_stt\credentials/google_application_credentials.json
   sphinx:
   azure:
     credentials: credentials/azure_subscription_key.yaml

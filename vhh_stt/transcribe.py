@@ -7,7 +7,7 @@ import subprocess
 import pickle
 import shutil
 
-from stt.transcribe_services import Google_STT_Service, Sphinx_STT_Service, Azure_STT_Service, Amazon_STT_Service
+from vhh_stt.transcribe_services import Google_STT_Service, Sphinx_STT_Service, Azure_STT_Service, Amazon_STT_Service
 
 class AudioTranscriber:
 	def __init__(self, file_paths, language_code, working_dir=None, resume=None, **kwargs):
@@ -19,7 +19,7 @@ class AudioTranscriber:
 		file_paths = [os.path.abspath(path) for path in file_paths]
 
 		# get config
-		self.cfg = yaml.safe_load(open(os.path.join(script_path, 'config.yaml')))
+		self.cfg = yaml.safe_load(open(os.path.join(script_path, '..', 'config', 'config.yaml')))
 		self.cfg.update(kwargs)
 
 		# switch to working directory

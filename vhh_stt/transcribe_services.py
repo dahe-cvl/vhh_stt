@@ -16,8 +16,6 @@ class STT_Service:
 		raise NotImplementedError()
 
 from google.cloud import speech
-from google.cloud.speech import enums
-from google.cloud.speech import types
 class Google_STT_Service(STT_Service):
 	def __init__(self, language_code, enable_punctuation, cfg):
 		super().__init__(language_code, enable_punctuation, cfg)
@@ -26,8 +24,8 @@ class Google_STT_Service(STT_Service):
 
 		# initialize client
 		self.speech_client = speech.SpeechClient()
-		self.speech_config = types.RecognitionConfig(
-			encoding=enums.RecognitionConfig.AudioEncoding.LINEAR16,
+		self.speech_config = speech.RecognitionConfig(
+			encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
 			sample_rate_hertz=16000,
 			enable_word_time_offsets=True,
 			max_alternatives=30,
@@ -38,7 +36,7 @@ class Google_STT_Service(STT_Service):
 		with open(clip_path, 'rb') as audio_file:
 			content = audio_file.read()
 
-		audio = types.RecognitionAudio(content=content)
+		audio = speech.RecognitionAudio(content=content)
 		response = self.speech_client.recognize(self.speech_config, audio)
 
 		# get time in milliseconds

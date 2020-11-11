@@ -1,0 +1,1 @@
+from vhh_stt.transcribe import AudioTranscriber

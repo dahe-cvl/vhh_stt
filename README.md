@@ -6,16 +6,18 @@ This package implements Speech-to-Text transcription functionality that interfac
 
 Make sure that `ffmpeg` is installed on the device, it is essential for the main transcription class.
 
-Download the archive `dist/vhh_stt-<version>.tar.gz` and extract it to the desired package directory.
-For basic transcription functionality navigate to the package directory and type `pip install .` to install.
-If optional dependencies for scripts in the `Develop` directory should be install as well instead type `pip install .[dev]`. 
+Download the archive `dist/vhh_stt-<version>.tar.gz` and extract it to the desired package directory. To build the binary yourself from source, use `python setup.py sdist bdist_wheel` (make sure the `wheel` package is installed). The binary can be found in the `dist` folder.
+For basic transcription functionality navigate to the package or `dist` directory and type `pip install .` or `pip install xxx.whl` to install.
+If optional dependencies for scripts in the `Develop` directory should be install as well instead type `pip install .[dev]`.
+
+Additionally, install the `pocketsphinx` python package. As this needs SWIG installed on your system (unless a pre-built binary is used), this must be done manually and is therefore not included in the requirements textfile.
 
 If you intend to use the services Google Cloud Speed-to-Text, Azure Speech-to-Text or Amazon Transcribe make sure that `config.yaml` contains the correct path to the appropriate credentials file - see section *Service authentication and configuration* below.
 If CMU Sphinx is used then the model files for the intended language must be provided - see section *CMU Sphinx models*.  
 
 ## Usage
 
-The main file for transcription is `stt/transcribe.py` with its class `AudioTranscriber`. See `Demo/transcribe_demo.py` for sample code.
+The main file for transcription is `vhh_stt/transcribe.py` with its class `AudioTranscriber`. See `Demo/transcribe_demo.py` for sample code.
 
 **Class Signature:**
 
@@ -24,7 +26,7 @@ The main file for transcription is `stt/transcribe.py` with its class `AudioTran
 Parameters:
 * `file_paths ([str])` : A list of paths to audio or video files that should be transcribed.
 * `language_code (str)` : The spoken language (e.g. "en-US").
-* `working_dir (str, optional)` : The directory where results and temporary files are saved. If no argument is given then `working_dir` is set to `stt/working_dir`.
+* `working_dir (str, optional)` : The directory where results and temporary files are saved. If no argument is given then `working_dir` is set to `vhh_stt/working_dir`.
 * `resume (bool, optional)` : Since transcription may take many hours the `AudioTranscriber` class is designed to be able to resume a transcription job if it is interrupted. If a `working_dir` argument is given then the default behaviour is `resume=True`, and `resume=False` otherwise.
 * `kwargs (dict, optional)` : Any setting in `config.yaml` can be overwritten here.
 
@@ -76,8 +78,8 @@ See `Demo/demo_credentials` for the required content of credential files.
 
 #### CMU Sphinx Models:
 
-Models for CMU Sphinx are expected to be located at `stt/sphinx_models`.
-For each language a subfolder `stt/sphinx_models/<language_code>/` must be created that contains:
+Models for CMU Sphinx are expected to be located at `vhh_stt/sphinx_models`.
+For each language a subfolder `vhh_stt/sphinx_models/<language_code>/` must be created that contains:
 * `<language_code> (directory path)` : Directory containing Hidden Markov Model files.
 * `<language_code>.dict (file path)` : A dictionary file. 
 * `<language_code>.lm.bin (file path)` : A language model.

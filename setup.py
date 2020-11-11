@@ -3,14 +3,16 @@ from setuptools import setup
 with open('README.md', 'r') as file:
     long_description = file.read()
 
-requirements = [
-    'pyyaml',
-    'numpy',
-    'google-cloud-speech', # google
-    'pocketsphinx', # cmusphinx
-    'azure-cognitiveservices-speech', # azure
-    'boto3', # amazon
-]
+# read requirements
+install_requires=[]
+with open("requirements.txt", "r") as f:
+    reqs = f.readlines()
+    for i in range(len(reqs)):
+        req = reqs[i]
+        if i < len(reqs)-1:
+            req = req[:-1]
+        if req[0] is not '#':
+            install_requires.append(req)
 
 dev_requirements = [
     'gensim', # Develop/evaluate.py
@@ -20,22 +22,22 @@ dev_requirements = [
 ]
 
 package_data = {
-    'stt' : ['config.yaml'],
-    'Demo' : ['demo_clip.wav', 'demo_credentials/*']
+    'config' : ['config.yaml'],
+    'Demo' : ['demo_clip.wav']
 }
 
 # install stt package
 setup(
     name='vhh_stt',
-    version='0.1.0',
+    version='1.0.0',
     author='Thomas Heitzinger',
     author_email='thomas.heitzinger@tuwien.ac.at',
     description='Speech-to-Text Package',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    #url='https://github.com/dahe-cvl/vhh_sbd',
-    install_requires=requirements,
+    url='https://github.com/dahe-cvl/vhh_stt',
+    install_requires=install_requires,
     extras_require={'dev' : dev_requirements},
     package_data=package_data,
-    packages=['stt', 'Demo', 'Develop']
+    packages=['vhh_stt', 'config', 'credentials', 'Demo', 'Develop']
 )

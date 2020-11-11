@@ -2,7 +2,7 @@ import os
 import sys
 sys.path.append('..')
 
-from stt.transcribe import AudioTranscriber
+from vhh_stt.transcribe import AudioTranscriber
 
 file_paths = ['demo_clip.wav']
 language_code = 'en-US'
